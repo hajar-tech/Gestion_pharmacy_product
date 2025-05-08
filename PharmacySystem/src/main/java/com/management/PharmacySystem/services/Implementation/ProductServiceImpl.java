@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 //injection des dependence
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Service
+
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository  ;//la relation entre la couche repository et la couche service

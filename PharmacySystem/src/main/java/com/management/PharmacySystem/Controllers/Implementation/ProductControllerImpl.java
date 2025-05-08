@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/products")
 @RestController
 @AllArgsConstructor
 public class ProductControllerImpl implements ProductController {
     private ProductService productService;//injecter le service (la liason entre service et cntroller)
+    // 💡 Injection par constructeur (meilleure pratique)
+
     @Override
     public String addProduct(Product product) {
         return productService.addProduct(product);
