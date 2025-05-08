@@ -3,7 +3,7 @@ package com.management.PharmacySystem.Controllers.Implementation;
 import com.management.PharmacySystem.Controllers.ProductController;
 import com.management.PharmacySystem.entities.Product;
 import com.management.PharmacySystem.services.ProductService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,10 +11,17 @@ import java.util.List;
 
 @RequestMapping("/api/v1/products")
 @RestController
-@AllArgsConstructor
+
 public class ProductControllerImpl implements ProductController {
-    private ProductService productService;//injecter le service (la liason entre service et cntroller)
+    //injecter le service (la liason entre service et cntroller)
     // 💡 Injection par constructeur (meilleure pratique)
+
+    private final ProductService productService;
+
+    @Autowired
+    public ProductControllerImpl(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
     public String addProduct(Product product) {

@@ -5,18 +5,25 @@ import com.management.PharmacySystem.repositories.ProductRepository;
 import com.management.PharmacySystem.services.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 //injection des dependence
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+
 
 
 public class ProductServiceImpl implements ProductService {
 
-    private ProductRepository productRepository  ;//la relation entre la couche repository et la couche service
+   //la relation entre la couche repository et la couche service
+   private final ProductRepository productRepository;
+
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public String addProduct(Product product) {
