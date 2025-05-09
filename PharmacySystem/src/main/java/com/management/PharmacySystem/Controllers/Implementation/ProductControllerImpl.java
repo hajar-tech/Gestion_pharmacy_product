@@ -37,4 +37,14 @@ public class ProductControllerImpl implements ProductController {
     public List<Product> retrieveAllProducts() {
         return productService.getAllProducts();
     }
+
+    @Override
+    public String deleteProduct(long id) {
+        return productService.deleteProduct(id);
+    }
+
+    @Override
+    public Product updateProduct(long id , Product product) {
+        return productService.updateProduct(id, product) ;
+    }
 }

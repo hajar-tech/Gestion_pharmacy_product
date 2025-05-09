@@ -1,10 +1,7 @@
 package com.management.PharmacySystem.Controllers;
 
 import com.management.PharmacySystem.entities.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +16,10 @@ public interface ProductController {
     @GetMapping()
     List<Product> retrieveAllProducts();
 
+    @DeleteMapping("/{id}")
+    String deleteProduct(@PathVariable long id);
+
+    @PutMapping("/{id}")
+    Product updateProduct( @PathVariable long id ,@RequestBody Product product);
 
 }

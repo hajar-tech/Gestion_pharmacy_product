@@ -3,9 +3,11 @@ package com.management.PharmacySystem.services.Implementation;
 import com.management.PharmacySystem.entities.Product;
 import com.management.PharmacySystem.repositories.ProductRepository;
 import com.management.PharmacySystem.services.ProductService;
+import jakarta.annotation.Priority;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,14 +33,13 @@ public class ProductServiceImpl implements ProductService {
         return ("Product added successfully !");
     }
 
-    @Override
-    public String updateProduct(Product product) {
-        return "";
-    }
+
 
     @Override
     public String deleteProduct(long id) {
-        return "";
+
+        productRepository.deleteById(id);
+        return ("Product deleted successfully !") ;
     }
 
     @Override
@@ -51,4 +52,15 @@ public class ProductServiceImpl implements ProductService {
 
         return productRepository.findById(id).orElse(null);
     }
+    @Override
+    public Product updateProduct(long id, Product productDetails) {
+        Product product = productRepository.findById(id).orElseThrow();
+        product.setProductName(product.getProductName());
+        product.setProductDescription(product.getProductDescription());
+        product.setProductPrice(product.getProductPrice());
+        product.setProductQuantity(product.getProductQuantity());
+        return productRepository.save(product);
+    }
 }
+
+
